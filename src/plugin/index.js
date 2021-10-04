@@ -37,6 +37,7 @@ import VuestroListItem from '../components/list/VuestroListItem';
 import VuestroMap from '../components/charts/VuestroMap';
 import VuestroModal from '../components/modal/VuestroModal';
 import VuestroMultiSelect from '../components/input/VuestroMultiSelect';
+import VuestroNoData from '../components/VuestroNoData';
 import VuestroNotifications from '../components/VuestroNotifications';
 import VuestroObjectBrowser from '../components/VuestroObjectBrowser';
 import VuestroObjectBrowserModal from '../components/modal/VuestroObjectBrowserModal';
@@ -105,6 +106,7 @@ export default {
     Vue.component(VuestroMap.name, VuestroMap);
     Vue.component(VuestroModal.name, VuestroModal);
     Vue.component(VuestroMultiSelect.name, VuestroMultiSelect);
+    Vue.component(VuestroNoData.name, VuestroNoData);
     Vue.component(VuestroNotifications.name, VuestroNotifications);
     Vue.component(VuestroObjectBrowser.name, VuestroObjectBrowser);
     Vue.component(VuestroObjectBrowserModal.name, VuestroObjectBrowserModal);
