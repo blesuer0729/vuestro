@@ -37,7 +37,7 @@ import VuestroListItem from '../components/list/VuestroListItem';
 import VuestroMap from '../components/charts/VuestroMap';
 import VuestroModal from '../components/modal/VuestroModal';
 import VuestroMultiSelect from '../components/input/VuestroMultiSelect';
-import VuestroNoData from '../components/VuestroNoData';
+import VuestroNoData from '../components/misc/VuestroNoData';
 import VuestroNotifications from '../components/VuestroNotifications';
 import VuestroObjectBrowser from '../components/VuestroObjectBrowser';
 import VuestroObjectBrowserModal from '../components/modal/VuestroObjectBrowserModal';
