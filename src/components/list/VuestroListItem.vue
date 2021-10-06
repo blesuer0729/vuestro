@@ -137,8 +137,9 @@ export default {
   z-index: -1000;
 }
 /* draw a border at the bottom of all but the last child */
+/* also remove the border under hover (for hover mode) and selected */
 /* of course these css pseudo-element manipulations assume all children are vuestro-list-item(s) */
-.vuestro-list-item:not(.selected):not(:hover):not(:last-child):after {
+.vuestro-list-item:not(.selected):not(.hover:hover):not(:last-child):after {
   position: absolute;
   top: 100%;
   left: var(--vuestro-selection-border-radius);
