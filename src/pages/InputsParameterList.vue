@@ -15,7 +15,6 @@
       <vuestro-panel>
         <template #title>Values</template>
         <vuestro-object-browser :data="liveObject">
-
         </vuestro-object-browser>
       </vuestro-panel>
     </vuestro-card>

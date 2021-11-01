@@ -53,11 +53,11 @@
           <!--MAIN PAGE VIEW-->
           <div ref="routerView" class="vuestro-router-view" @scroll="onScroll">
             <slot name="pre-content"></slot>
-            <keep-alive> <!-- vue router option for persistent state -->
-              <transition name="vuestro-app-pages" mode="out-in" @after-leave="onRouterTransitionDone">
+            <transition name="vuestro-app-pages" mode="out-in" @after-leave="onRouterTransitionDone">
+              <keep-alive> <!-- vue router option for persistent state -->
                 <router-view/>
-              </transition>
-            </keep-alive>
+              </keep-alive>
+            </transition>
             <slot name="footer"></slot>
           </div>
         </div>
