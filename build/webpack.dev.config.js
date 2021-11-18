@@ -10,9 +10,11 @@ module.exports = merge(baseWebpackConfig, {
   },
   devServer: {
     host: '0.0.0.0',
-    compress: true,
+    public: process.env.PUBLIC_HOST, // define this if behind a reverse proxy
+    hot: true,
     disableHostCheck: true,
     historyApiFallback: true,
+    compress: true,
     contentBase: path.resolve('static'),
     publicPath: '/',
     before: function(app, server, compiler) {

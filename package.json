@@ -8,7 +8,7 @@
   "license": "ISC",
   "main": "./src/plugin/index.js",
   "scripts": {
-    "dev": "webpack-dev-server -d --hot --port 8080 --config ./build/webpack.dev.config.js",
+    "dev": "webpack-dev-server -d --port 8080 --config ./build/webpack.dev.config.js",
     "build": "webpack --config ./build/webpack.prod.config.js",
     "build-pages": "webpack --config ./build/webpack.pages.config.js"
   },
