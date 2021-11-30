@@ -1,6 +1,6 @@
 <template>
   <div class="vuestro-notifications">
-    <vuestro-dropdown ref="theDropdown" @leave="popupMode = false">
+    <vuestro-dropdown ref="theDropdown" :closeOnLeave="closeOnLeave">
       <!--NAVBAR ICON-->
       <template #title>
         <div class="vuestro-notifications-icon">
@@ -42,13 +42,17 @@
           <!--HEADER-->
           <vuestro-container justify="space-between" align="center" gutter="none" no-wrap>
             <!--SEARCH BOX-->
-            <vuestro-text-field class="vuestro-notification-search-box"
+            <vuestro-text-field v-if="!simpleNotifications"
+                                class="vuestro-notification-search-box"
                                 variant="search"
                                 v-model="searchTerm"
                                 no-margin>
             </vuestro-text-field>
             <!--COUNT-->
-            <div class="vuestro-notification-count">{{ allNotifications.length }} notifications</div>
+            <div v-if="!simpleNotifications" 
+                class="vuestro-notification-count">
+                {{ allNotifications.length }} notifications
+            </div>
             <!--HEADER BUTTONS-->
             <vuestro-container gutter="none" justify="flex-end" no-wrap>
               <vuestro-button variant="info" pill value size="sm" @click="onMarkAllRead">
@@ -115,6 +119,8 @@ export default {
     idName: { type: String, default: '_id' },                     // name of id field
     popupTimeout: { type: Number, default: 2000 },                // ms to keep popup open
     grouped: { type: Boolean, default: false },                   // grouped notifications by simple compare
+    simpleNotifications: { type: Boolean, default: false },       // for disabling the search field and notification counter
+    closeOnLeave: { type: Boolean, default: false },              // the vuestroDropdown closeOnLeave prop
   },
   data() {
     return {
