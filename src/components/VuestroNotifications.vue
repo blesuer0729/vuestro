@@ -49,9 +49,9 @@
                                 no-margin>
             </vuestro-text-field>
             <!--COUNT-->
-            <div v-if="!simpleNotifications" 
-                class="vuestro-notification-count">
-                {{ allNotifications.length }} notifications
+            <div v-if="!simpleNotifications"
+                 class="vuestro-notification-count">
+              {{ allNotifications.length }} notifications
             </div>
             <!--HEADER BUTTONS-->
             <vuestro-container gutter="none" justify="flex-end" no-wrap>
@@ -120,7 +120,7 @@ export default {
     popupTimeout: { type: Number, default: 2000 },                // ms to keep popup open
     grouped: { type: Boolean, default: false },                   // grouped notifications by simple compare
     simpleNotifications: { type: Boolean, default: false },       // for disabling the search field and notification counter
-    closeOnLeave: { type: Boolean, default: false },              // the vuestroDropdown closeOnLeave prop
+    closeOnLeave: { type: Boolean, default: true },               // the vuestroDropdown closeOnLeave prop
   },
   data() {
     return {
