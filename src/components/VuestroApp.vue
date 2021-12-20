@@ -244,6 +244,7 @@ export default {
 
   --vuestro-selection: #aab9d0;
   --vuestro-outline: #aaa;
+  --vuestro-outline-dark: #777;
   --vuestro-active: #cfdaee;
   --vuestro-hover: #c4c7c9;
 
@@ -266,6 +267,7 @@ export default {
 
   --vuestro-field-bg: var(--vuestro-darker);
   --vuestro-outline: #7d7d7d;
+  --vuestro-outline-dark: #444;
   --vuestro-active: #37383a;
   --vuestro-hover: #535456;
   --vuestro-popup-bg: #323334;

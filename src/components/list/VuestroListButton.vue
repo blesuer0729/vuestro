@@ -45,7 +45,7 @@ export default {
 }
 
 .vuestro-list-button:hover {
-  background-color: var(--vuestro-list-item-selected-bg);
+  background-color: var(--vuestro-list-item-selected-bg, var(--vuestro-selection));
   color: white;
 }
 
