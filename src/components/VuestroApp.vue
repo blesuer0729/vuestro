@@ -116,6 +116,7 @@ export default {
   watch: {
     '$route'(to, from) {
       this.toRoute = to;
+      this.setTitle();
     }
   },
   beforeMount() {
@@ -126,8 +127,12 @@ export default {
       console.log('vuestro-app going into MOBILE mode');
       this.$root.mobile = true;
     }
+    this.setTitle();
   },
   methods: {
+    setTitle() {
+      document.title = `${this.title} - ${this.$route.meta.title}`;
+    },
     onScroll(e) {
       // save content-container scroll position to this route's meta
       this.$route.meta.scrollTop = this.$refs.routerView.scrollTop;
