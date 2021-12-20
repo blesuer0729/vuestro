@@ -137,7 +137,9 @@ export default {
       // only works if we delay 2 ticks
       this.$nextTick(() => {
         this.$nextTick(() => {
-          this.$refs.routerView.scrollTop = this.toRoute.meta.scrollTop;
+          if (this.toRoute && this.toRoute.meta) {
+            this.$refs.routerView.scrollTop = this.toRoute.meta.scrollTop;
+          }
         });
       });
       // emit a global resize event so widgets/charts can resize
@@ -252,6 +254,7 @@ export default {
 /* DARK UI OVERRIDES */
 .vuestro-dark {
   --vuestro-content-bg: #1b1c21;
+  --vuestro-content-bg-alt: #2e2f34;
 
   --vuestro-widget-dark-bg: #383b3f;
   --vuestro-widget-light-bg: var(--vuestro-widget-dark-bg);
@@ -347,25 +350,25 @@ export default {
 <style scoped>
 
 @font-face {
-  font-family: 'Quicksand';
+  font-family: 'Vuestro';
   src: url('../assets/Quicksand-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Quicksand';
+  font-family: 'Vuestro';
   src: url('../assets/Quicksand-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Quicksand';
+  font-family: 'Vuestro';
   src: url('../assets/Quicksand-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Quicksand';
+  font-family: 'Vuestro';
   src: url('../assets/Quicksand-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
@@ -378,7 +381,7 @@ export default {
 .vuestro-app {
   color: var(--vuestro-text-color);
   font-size: var(--vuestro-base-font-size);
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Vuestro', sans-serif;
   -webkit-font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
   min-height: 100%; /* stretches app down to bottom edge of body */
@@ -427,7 +430,7 @@ export default {
 }
 
 .vuestro-app >>> input {
-  font-family: 'Quicksand';
+  font-family: 'Vuestro';
 }
 
 .vuestro-app >>> a {

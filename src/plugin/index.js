@@ -22,7 +22,6 @@ import VuestroDynamicTable from '../components/VuestroDynamicTable';
 import VuestroEditableText from '../components/text/VuestroEditableText';
 import VuestroEditor from '../components/input/VuestroEditor';
 import VuestroEllipsisText from '../components/text/VuestroEllipsisText';
-import VuestroUpload from '../components/input/VuestroUpload';
 import VuestroForceGraph from '../components/charts/VuestroForceGraph';
 import VuestroGeoPattern from '../components/misc/VuestroGeoPattern';
 import VuestroGrid from '../components/grid/VuestroGrid';
@@ -61,6 +60,8 @@ import VuestroTimePicker from '../components/pickers/VuestroTimePicker';
 import VuestroTitle from '../components/text/VuestroTitle';
 import VuestroTooltip from '../components/VuestroTooltip';
 import VuestroTray from '../components/containers/VuestroTray';
+import VuestroUpload from '../components/input/VuestroUpload';
+import VuestroWorkflow from '../components/workflow/VuestroWorkflow';
 
 import VuestroMixins from './mixins';
 
@@ -131,6 +132,7 @@ export default {
     Vue.component(VuestroTooltip.name, VuestroTooltip);
     Vue.component(VuestroTray.name, VuestroTray);
     Vue.component(VuestroUpload.name, VuestroUpload);
+    Vue.component(VuestroWorkflow.name, VuestroWorkflow);
     //
     // FILTERS
     //

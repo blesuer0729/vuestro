@@ -50,7 +50,7 @@
     </div>
     <div v-if="$scopedSlots.value"
          class="vuestro-pill-value vuestro-pill-value-layer"
-         :class="{ 'vuestro-pill-value-no-right-padding': isValueButtons }">
+         :class="{ 'vuestro-pill-value-min-padding': isValueButtons }">
       <slot name="value"></slot>
     </div>
     <div v-if="isValueButtons"
@@ -269,6 +269,8 @@ export default {
 }
 
 .vuestro-pill-value {
+  display: flex;
+  align-items: center;
   position: relative;
   padding-left: calc(var(--vuestro-pill-height) / 2 + 0.3em); /* add a little extra */
   padding-right: 0.5em;
@@ -281,8 +283,8 @@ export default {
 	transition: background-color 0.4s;
 	z-index: -1;
 }
-.vuestro-pill-value-no-right-padding {
-  padding-right: 0;
+.vuestro-pill-value-min-padding {
+  padding-right: 0.1em;
 }
 .vuestro-pill.inverted .vuestro-pill-value {
   color: var(--vuestro-pill-title-fg);

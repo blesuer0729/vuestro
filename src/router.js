@@ -51,6 +51,7 @@ import Example from './pages/Example';
 import ExampleForms from './pages/ExampleForms';
 import Settings from './pages/Settings';
 import Misc from './pages/Misc';
+import Workflow from './pages/Workflow';
 
 Vue.use(Router);
 
@@ -444,6 +445,16 @@ export default new Router({
       name: 'misc',
       path: '/misc',
       component: Misc,
+    },
+    {
+      meta: {
+        title: 'Workflow',
+        sidebar: true,
+        icon: 'clipboard-list',
+      },
+      name: 'workflow',
+      path: '/workflow',
+      component: Workflow,
     },
     {
       meta: {

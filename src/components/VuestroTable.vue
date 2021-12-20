@@ -1,3 +1,10 @@
+//
+// CSS Vars:
+//  --vuestro-table-top-left-radius
+//  --vuestro-table-top-right-radius
+//  --vuestro-table-bottom-left-radius
+//  --vuestro-table-bottom-right-radius
+//
 <template>
   <div class="vuestro-table" :class="{ scroll }">
     <table class="vuestro-table-table">
@@ -355,6 +362,19 @@ export default {
 }
 .vuestro-table-row:last-child {
   border-bottom: none;
+}
+/*ROUNDED CORNERS*/
+.vuestro-table-row:last-child .vuestro-table-cell:first-child {
+  border-bottom-left-radius: var(--vuestro-table-bottom-left-radius, 0);
+}
+.vuestro-table-row:last-child .vuestro-table-cell:last-child {
+  border-bottom-right-radius: var(--vuestro-table-bottom-right-radius, 0);
+}
+.vuestro-table-row:first-child .vuestro-table-cell:first-child {
+  border-top-left-radius: var(--vuestro-table-top-left-radius, 0);
+}
+.vuestro-table-row:first-child .vuestro-table-cell:last-child {
+  border-top-right-radius: var(--vuestro-table-top-right-radius, 0);
 }
 .vuestro-table-row:hover {
   background-color: var(--vuestro-table-hover-bg);
