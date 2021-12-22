@@ -299,7 +299,7 @@ export default {
       exampleData: [
         {
           firstName: 'Trent',
-          lastName: 'Wilson',
+          lastName: null,
           phone: '5553344232',
           email: 'goodtime@club.net',
           subObject: {

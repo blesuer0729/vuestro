@@ -6,6 +6,7 @@
 //  #dropdown="{ closeDropdown, clear }" - dropdown content, with references to the closeDropdown and clear methods
 //
 // CSS Vars:
+// --vuestro-field-bg - background color
 // --vuestro-text-field-fg - text color for entered text
 // --vuestro-text-field-font-weight - font weight for entered text
 // --vuestro-text-field-placeholder - placeholder color

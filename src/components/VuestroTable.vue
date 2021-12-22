@@ -1,3 +1,4 @@
+// The Vuestro DataTable
 //
 // CSS Vars:
 //  --vuestro-table-top-left-radius
@@ -12,7 +13,7 @@
       <thead v-else-if="!noHeader"
              class="vuestro-table-header-row"
              :class="{ transparentHeader }">
-        <!-- spacer for detail expander -->
+        <!-- SPACER FOR DETAIL EXPANDER -->
         <th v-if="$scopedSlots.detail" class="vuestro-table-header vuestro-table-header-spacer"></th>
         <slot v-if="$scopedSlots['header-row']" name="header-row" :headers="headers"></slot>
         <th v-else v-for="column in headers"
@@ -43,6 +44,7 @@
         <th v-else-if="$scopedSlots['row-buttons']" class="vuestro-table-header"></th>
       </thead>
       <tbody>
+        <!--NO DATA-->
         <tr v-if="sortedFilteredData.length === 0" class="vuestro-table-row">
           <td :colspan="headers.length + 1" align="center"><!-- plus one in case there are header buttons -->
             <div class="vuestro-table-no-data-slot">
@@ -50,9 +52,10 @@
             </div>
           </td>
         </tr>
+        <!--NORMAL ROWS-->
         <template v-for="(row, idx) in sortedFilteredData">
           <tr class="vuestro-table-row" @click.exact="onRowClick(row)" :style="getRowStyle(row)">
-            <!-- detail expander caret, always give it minimum width -->
+            <!-- DETAIL EXPANDER CARET, ALWAYS GIVE IT MINIMUM WIDTH -->
             <td v-if="$scopedSlots.detail" style="width:1px">
               <vuestro-caret :collapsed="!isExpanded(idx)" @click.stop="toggleDetail(idx)"></vuestro-caret>
             </td>
@@ -174,7 +177,10 @@ export default {
           }
         }
         // return sorted results
-        return _.orderBy(filteredData, _.flatMap(this.sort, 'field'), _.flatMap(this.sort, 'direction'));
+        return _.orderBy(filteredData, (o) => {
+          let sortableFields = _.flatMap(this.sort, 'field');
+          return sortableFields.map((s) => o[s] ? s:'');
+        }, _.flatMap(this.sort, 'direction'));
       }
     },
   },
