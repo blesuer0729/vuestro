@@ -48,28 +48,28 @@ export default {
   justify-content: center;
   position: relative;
 }
-.vuestro-icon-primary {
-  color: var(--vuestro-primary);
-}
-.vuestro-icon-secondary {
-  color: var(--vuestro-secondary);
-}
-.vuestro-icon-success {
-  color: var(--vuestro-success);
-}
-.vuestro-icon-warning {
-  color: var(--vuestro-warning);
-}
-.vuestro-icon-danger {
-  color: var(--vuestro-danger);
-}
-.vuestro-icon-info {
-  color: var(--vuestro-info);
-}
-
 .vuestro-icon > svg {
   fill: var(--vuestro-text-color);
 }
+.vuestro-icon-primary > svg {
+  fill: var(--vuestro-primary);
+}
+.vuestro-icon-secondary > svg {
+  fill: var(--vuestro-secondary);
+}
+.vuestro-icon-success > svg {
+  fill: var(--vuestro-success);
+}
+.vuestro-icon-warning > svg {
+  fill: var(--vuestro-warning);
+}
+.vuestro-icon-danger > svg {
+  fill: var(--vuestro-danger);
+}
+.vuestro-icon-info > svg {
+  fill: var(--vuestro-info);
+}
+
 
 .vuestro-app.mobile .vuestro-icon > svg {
   width: 0.8em;
