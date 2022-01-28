@@ -157,7 +157,7 @@
           SM Button
         </vuestro-button>
         <vuestro-button size="md"><vuestro-icon name="tractor"></vuestro-icon></vuestro-button>
-        <vuestro-button size="md">
+        <vuestro-button size="md" variant="success">
           <template #icon>
             <vuestro-icon name="tractor"></vuestro-icon>
           </template>

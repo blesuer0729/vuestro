@@ -4,7 +4,7 @@ const baseWebpackConfig = require('./webpack.base.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require("terser-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const webpackConfig = merge(baseWebpackConfig, {
