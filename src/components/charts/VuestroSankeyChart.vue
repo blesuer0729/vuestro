@@ -211,15 +211,15 @@ export default {
       }
     },
     resize() {
-      if (this.$el.clientWidth > 0 && this.$el.clientHeight > 0) {
-        this.$nextTick(() => {
+      this.$nextTick(() => {
+        if (this.$el.clientWidth > 0 && this.$el.clientHeight > 0) {
           this.width = this.$el.clientWidth - this.margin.left - this.margin.right;
           this.height = this.$el.clientHeight - this.margin.top - this.margin.bottom - this.toolbarHeight;
           if (this.prunedData.nodes && this.prunedData.links && this.prunedData.nodes.length > 0 && this.prunedData.links.length > 0) {
               this.graph = this.sankey(this.prunedData);
           }
-        });
-      }
+        }
+      });
     },
     increaseLinkThreshold() {
       this.maxLinks += 5;

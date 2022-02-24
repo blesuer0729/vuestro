@@ -151,18 +151,20 @@ export default {
   methods: {
     // redraw if window changes
     resize() {
-      if (this.$el.clientWidth > 0 && this.$el.clientHeight > 0) {
-        this.width = this.$el.clientWidth - this.margin.left - this.margin.right;
-        this.centerX = this.width/2;
-        this.height = this.$el.clientHeight - this.margin.top - this.margin.bottom;
-        this.centerY = this.height/2;
-        this.maxRadius = Math.min(this.centerX, this.centerY) * (100 - this.padding) / 100.0;
-        if (this.gaugeMode && this.width > this.height*1.2) {
-          this.maxRadius *= 1.2;
-          this.centerY *= 1.2;
+      this.$nextTick(() => {
+        if (this.$el.clientWidth > 0 && this.$el.clientHeight > 0) {
+          this.width = this.$el.clientWidth - this.margin.left - this.margin.right;
+          this.centerX = this.width/2;
+          this.height = this.$el.clientHeight - this.margin.top - this.margin.bottom;
+          this.centerY = this.height/2;
+          this.maxRadius = Math.min(this.centerX, this.centerY) * (100 - this.padding) / 100.0;
+          if (this.gaugeMode && this.width > this.height*1.2) {
+            this.maxRadius *= 1.2;
+            this.centerY *= 1.2;
+          }
+          this.redraw();
         }
-        this.redraw();
-      }
+      });
     },
     redraw() {
       this.localData = _.cloneDeep(this.data);

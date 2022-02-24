@@ -109,16 +109,18 @@ export default {
       .force('collide', d3.forceCollide(this.nodeRadius*2));
     },
     resize() {
-      if (this.nodes && this.nodes.length > 0 && this.$el.clientWidth > 0 && this.$el.clientHeight > 0) {
-        this.$nextTick(() => {
-          this.width = this.$el.clientWidth;
-          this.height = this.$el.clientHeight;
-          this.graph = this.forceGraph(this.nodes, this.links);
-          this.graph.on("tick", (d) => {
-            this.$forceUpdate();
+      this.$nextTick(() => {
+        if (this.nodes && this.nodes.length > 0 && this.$el.clientWidth > 0 && this.$el.clientHeight > 0) {
+          this.$nextTick(() => {
+            this.width = this.$el.clientWidth;
+            this.height = this.$el.clientHeight;
+            this.graph = this.forceGraph(this.nodes, this.links);
+            this.graph.on("tick", (d) => {
+              this.$forceUpdate();
+            });
           });
-        });
-      }
+        }
+      });
     },
     onSelectNode(n) {
       this.dragNode = n;
