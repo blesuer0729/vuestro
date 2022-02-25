@@ -132,3 +132,10 @@ export default {
 };
 
 </script>
+
+<style scoped>
+
+.vuestro-parameter-list {
+}
+
+</style>

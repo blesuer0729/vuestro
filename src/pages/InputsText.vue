@@ -55,6 +55,8 @@
         <vuestro-card cols="4">
           <vuestro-text-field size="lg" placeholder="With Clear Button" hint="type something and the clear button will appear!" v-model="exampleText" clearable></vuestro-text-field>
           <vuestro-text-field size="lg" placeholder="Centered Cursor" hint="centered hint, too!" center v-model="exampleText"></vuestro-text-field>
+
+          <vuestro-text-field size="lg" placeholder="Copy-button" variant="outline" value="Button to copy to clipboard" copy-button></vuestro-text-field>
         </vuestro-card>
         <vuestro-card cols="4">
           <vuestro-text-field size="lg" placeholder="Icon slot" hint="with hint" v-model="exampleText">

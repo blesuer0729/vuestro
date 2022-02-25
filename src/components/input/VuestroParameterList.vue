@@ -1,9 +1,22 @@
+//
+// Supports v-model binding on an object containing all field values
+//
+// CSS Vars:
+//  --vuestro-parameter-list-item-margin - margin around list items
+//  --vuestro-parameter-list-title-font-size
+//  --vuestro-parameter-list-title-font-weight
+//  --vuestro-parameter-list-title-padding
+//  --vuestro-parameter-list-type-font-size
+//  --vuestro-parameter-list-type-font-weight
+//  --vuestro-parameter-list-description-font-size
+//
 <template>
-  <vuestro-container gutter="none" column content="stretch">
-    <!--PARAMETER ITEMs-->
+  <vuestro-container class="vuestro-parameter-list" gutter="none" column content="stretch" grow=0>
+    <!--PARAMETER ITEMS-->
     <vuestro-geo-pattern class="vuestro-parameter-list-item"
                          v-for="(p, idx) in parameters" :key="p.field"
-                         :seed="`${p.type}_type`">
+                         :seed="`${p.type}_type`"
+                         :disable="noGeopattern">
       <!--TITLE BAR-->
       <vuestro-container justify="space-between" gutter="none" align="center">
         <div class="vuestro-parameter-list-name">
@@ -139,6 +152,7 @@ export default {
     value: { type: Object }, // the object these parameters will be set on
     readonly: { type: Boolean, default: false }, // true if parameters should be read only
     hideType: { type: Boolean, default: false }, // true to hide type (e.g. String, Number, etc)
+    noGeopattern: { type: Boolean, default: false },
     parameters: { type: Array, required: true }, // the parameter list, with items with the following schema:
     //  {
     //    title: '<the UI-friendly name>',

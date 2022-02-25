@@ -121,6 +121,7 @@ export default {
     grouped: { type: Boolean, default: false },                   // grouped notifications by simple compare
     simpleNotifications: { type: Boolean, default: false },       // for disabling the search field and notification counter
     closeOnLeave: { type: Boolean, default: true },               // the vuestroDropdown closeOnLeave prop
+    ignoreFirstLoad: { type: Boolean, default: false },           // useful when notifications loaded from db, causes first change to be ignored
   },
   data() {
     return {
@@ -128,7 +129,7 @@ export default {
       popupTimer: null,
       searchTerm: '',
       muted: false,
-      firstTime: true,
+      firstTime: this.ignoreFirstLoad,
     };
   },
   computed: {

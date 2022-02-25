@@ -10,7 +10,6 @@
       </template>
     </vuestro-card>
 
-
     <vuestro-card>
       <vuestro-button @click="emitNotification">Simulate Notification</vuestro-button>
     </vuestro-card>

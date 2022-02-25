@@ -1,4 +1,5 @@
 // The all-important text field
+// Props: see below
 //
 // Slots:
 //  #icon - left-aligned slot suitable for icons
@@ -6,17 +7,17 @@
 //  #dropdown="{ closeDropdown, clear }" - dropdown content, with references to the closeDropdown and clear methods
 //
 // CSS Vars:
-// --vuestro-field-bg - background color
-// --vuestro-text-field-fg - text color for entered text
-// --vuestro-text-field-font-weight - font weight for entered text
-// --vuestro-text-field-placeholder - placeholder color
-// --vuestro-text-field-placeholder-font-weight - font weight for placeholder
-// --vuestro-text-field-input-padding - padding around input el
-// --vuestro-text-field-search-radius - border radius for search variant
-// --vuestro-control-margin-v - inherited vuestro vertical margin
-// --vuestro-control-margin-h - inherited vuestro horizontal margin
-// --vuestro-control-border-width - inherited vuestro border width
-// --vuestro-control-border-radius - inherited vuestro border radius
+//  --vuestro-field-bg - background color
+//  --vuestro-text-field-fg - text color for entered text
+//  --vuestro-text-field-font-weight - font weight for entered text
+//  --vuestro-text-field-placeholder - placeholder color
+//  --vuestro-text-field-placeholder-font-weight - font weight for placeholder
+//  --vuestro-text-field-input-padding - padding around input el
+//  --vuestro-text-field-search-radius - border radius for search variant
+//  --vuestro-control-margin-v - inherited vuestro vertical margin
+//  --vuestro-control-margin-h - inherited vuestro horizontal margin
+//  --vuestro-control-border-width - inherited vuestro border width
+//  --vuestro-control-border-radius - inherited vuestro border radius
 //
 <template>
   <div class="vuestro-text-field"
@@ -55,6 +56,7 @@
              :autocomplete="autocomplete"
              :spellcheck="spellcheck"
              :placeholder="inputPlaceholder"
+             :readonly="readonly"
              @focus="onFocus"
              @focusout="onFocusOut"
              @input="updateValue"
@@ -64,6 +66,12 @@
       <div v-if="$scopedSlots.unit" class="vuestro-text-field-unit-slot">
         <slot name="unit"></slot>
       </div>
+      <!--COPY BUTTON-->
+      <vuestro-button v-if="copyButton"
+                      size="sm" no-border round @click="onCopyButton">
+        <vuestro-icon v-if="!copiedToClipboard" name="clipboard"></vuestro-icon>
+        <vuestro-icon v-else name="check" variant="success"></vuestro-icon>
+      </vuestro-button>
       <!--CLEAR BUTTON-->
       <vuestro-button v-if="(!invalid && clearable && isContent && !readonly) || variant === 'search'"
                       class="vuestro-text-field-button"
@@ -113,7 +121,7 @@
 
 <script>
 
-/* global _ */
+/* global _, navigator */
 
 export default {
   name: 'VuestroTextField',
@@ -135,6 +143,7 @@ export default {
     spellcheck: { type: String, default: null },      // standard spellcheck field for input el
     stretch: { type: Boolean, default: false },       // set true for flexbox grow
     autoFocus: { type: Boolean, default: false },     // set true for focus on mount (last one wins)
+    copyButton: { type: Boolean, default: false },    // show a button to copy to clipboard
   },
   data() {
     return {
@@ -146,6 +155,7 @@ export default {
       style: {},                // style object
       placeholderStyle: {},     // placeholder style object
       beginValidation: false,   // flag to delay validation until user has typed something
+      copiedToClipboard: false,
     };
   },
   computed: {
@@ -161,7 +171,7 @@ export default {
     },
     // convenience computed var to know when the text box has content
     isContent() {
-      if (this.value || this.value === 0 || this.inputBuffer.length > 0) {
+      if (this.value || this.value === 0 || this.inputBuffer && this.inputBuffer.length > 0) {
         return true;
       }
       return false;
@@ -279,6 +289,8 @@ export default {
       this.$emit('keyup', e);
     },
     onFocus(e) {
+      // don't focus if readonly
+      if (this.readonly) return;
       if (this.$scopedSlots.dropdown) {
         this.showDropdown = true;
       }
@@ -319,6 +331,13 @@ export default {
       this.$emit('input', '');
       this.inputBuffer = '';
       this.focus();
+    },
+    onCopyButton() {
+      navigator.clipboard.writeText(this.inputBuffer);
+      this.copiedToClipboard = true;
+      setTimeout(() => {
+        this.copiedToClipboard = false;
+      }, 2000);
     },
   },
 };
@@ -371,9 +390,6 @@ export default {
 .vuestro-text-field.focused,
 .vuestro-text-field.focused .vuestro-text-field-input-el-wrapper {
   border-color: var(--vuestro-primary);
-}
-.vuestro-text-field.readonly {
-  pointer-events: none;
 }
 .vuestro-text-field.invalid {
   border-color: var(--vuestro-danger);
