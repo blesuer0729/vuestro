@@ -69,6 +69,9 @@
         <vuestro-pill variant="capsule">
           <template #value>capsule</template>
         </vuestro-pill>
+        <vuestro-pill variant="badge">
+          <template #value>badge</template>
+        </vuestro-pill>
         <vuestro-pill variant="inverted">
           <template #value>inverted</template>
         </vuestro-pill>
@@ -77,6 +80,9 @@
         </vuestro-pill>
         <vuestro-pill variant="inverted capsule outline">
           <template #value>inverted capsule outline</template>
+        </vuestro-pill>
+        <vuestro-pill variant="inverted badge outline">
+          <template #value>inverted badge outline</template>
         </vuestro-pill>
       </vuestro-container>
     </vuestro-card>

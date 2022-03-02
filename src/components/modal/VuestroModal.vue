@@ -1,11 +1,13 @@
 // Modal component
 //
 // CSS Vars:
-// --vuestro-modal-content-bg - the background shade (outside modal)
-// --vuestro-modal-margin-top - space above modal
-// --vuestro-modal-title-font-size
-// --vuestro-modal-titlebar-padding
-// --vuestro-modal-buttons-padding
+//  --vuestro-modal-width - override width
+//  --vuestro-modal-height - fix the height
+//  --vuestro-modal-content-bg - the background shade (outside modal)
+//  --vuestro-modal-margin-top - space above modal
+//  --vuestro-modal-title-font-size
+//  --vuestro-modal-titlebar-padding
+//  --vuestro-modal-buttons-padding
 //
 <template>
   <transition name="vuestro-modal" mode="out-in"
@@ -142,6 +144,7 @@ export default {
   background-color: var(--vuestro-modal-content-bg, var(--vuestro-content-bg));
   transition: background-color 0.4s;
   width: var(--vuestro-modal-width);
+  height: var(--vuestro-modal-height, 15vh);
   min-height: 15vh;
   margin-top: var(--vuestro-modal-margin-top, 10vh);
   position: relative;

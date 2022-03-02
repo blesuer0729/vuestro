@@ -166,6 +166,9 @@ export default {
 .vuestro-pill.xl {
   --vuestro-pill-height: var(--vuestro-control-xl-height);
 }
+.vuestro-pill.badge {
+  --vuestro-pill-radius: 0.3em;
+}
 
 .vuestro-pill {
   flex: 0 1 auto;
