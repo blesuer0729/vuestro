@@ -233,6 +233,7 @@ export default {
             field: 'subObject.subField1',
             title: 'SubObject Field1',
             align: 'right',
+            sortable: true,
           }
         ],
       },

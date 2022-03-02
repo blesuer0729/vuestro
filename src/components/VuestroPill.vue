@@ -175,6 +175,7 @@ export default {
   display: flex;
   min-width: 0;
   margin: var(--vuestro-control-margin-v) var(--vuestro-control-margin-h);
+  position: relative; /* needed for z-index */
   z-index: 1;
 }
 

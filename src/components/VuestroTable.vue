@@ -36,6 +36,7 @@
             </div>
           </template>
         </th>
+        <!--HEADER BUTTON SLOT-->
         <th v-if="$scopedSlots['header-buttons']" class="vuestro-table-header">
           <div class="vuestro-table-header-buttons">
             <slot name="header-buttons"></slot>
@@ -177,10 +178,7 @@ export default {
           }
         }
         // return sorted results
-        return _.orderBy(filteredData, (o) => {
-          let sortableFields = _.flatMap(this.sort, 'field');
-          return sortableFields.map((s) => o[s] ? s:'');
-        }, _.flatMap(this.sort, 'direction'));
+        return _.orderBy(filteredData, _.flatMap(this.sort, 'field'), _.flatMap(this.sort, 'direction'));
       }
     },
   },
