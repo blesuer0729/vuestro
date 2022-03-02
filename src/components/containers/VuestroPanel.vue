@@ -1,37 +1,44 @@
+// panel component for grouping together UI elements
 //
 //
 // CSS Vars:
-// --vuestro-panel-bg
-// --vuestro-panel-fg
-// --vuestro-panel-toolbar-bg
-// --vuestro-panel-toolbar-fg
-// --vuestro-panel-toolbar-border
-// --vuestro-panel-border
-// --vuestro-panel-box-shadow
-// --vuestro-panel-border-radius
-// --vuestro-panel-titlebar-min-height
-// --vuestro-panel-title-padding
+//  --vuestro-panel-bg
+//  --vuestro-panel-fg
+//  --vuestro-panel-toolbar-bg
+//  --vuestro-panel-toolbar-fg
+//  --vuestro-panel-toolbar-border - bottom border spec for titlebar only
+//  --vuestro-panel-border - border spec
+//  --vuestro-panel-box-shadow
+//  --vuestro-panel-border-radius - global border-radius for panel
+//  --vuestro-panel-titlebar-min-height
+//  --vuestro-panel-title-padding - padding inside title slot
+//  --vuestro-panel-titlebar-padding - padding inside titlebar
 //
 //
 <template>
   <div class="vuestro-panel"
-       :class="[ gutter, { isCollapsed, scroll, noStretch, noBorder, hasTitlebar }]">
+       :class="[ gutter, { isCollapsed, scroll, noStretch, noBorder, hasTitlebar, hasContent }]">
     <!--TOOLBAR-->
     <div v-if="hasTitlebar" class="vuestro-panel-title-toolbar">
+      <!--CARET FOR COLLAPSE-->
       <vuestro-caret v-if="collapsible"
                      :collapsed="isCollapsed"
                      @click="toggleCollapse">
       </vuestro-caret>
+      <!--TITLE (LEFT-JUSTIFIED)-->
       <vuestro-title class="vuestro-panel-title"
                      :spinner="spinner"
                      :clickable="collapsible"
                      :draggable="draggable"
                      @click="toggleCollapse">
+        <!--TITLE ICON-->
         <template v-if="$slots.icon" #icon>
           <slot name="icon"></slot>
         </template>
+        <!--TITLE SLOT-->
         <slot name="title"></slot>
       </vuestro-title>
+      <!--TOOLBAR SLOT-->
       <div v-if="$scopedSlots.toolbar" class="vuestro-panel-toolbar">
         <!--EXPOSE COLLAPSE STATE TO TOOLBAR TO ENABLE A 'CANCEL' BUTTON-->
         <slot name="toolbar"
@@ -40,17 +47,21 @@
         </slot>
       </div>
     </div>
-    <div class="vuestro-panel-contents-wrapper" :class="[contentPadding, { isCollapsed, scroll, frame, overflowHidden, row }]">
+    <!--CONTENTS-->
+    <div class="vuestro-panel-contents-wrapper" :class="[ contentPadding, { isCollapsed, scroll, frame, overflowHidden, row }]">
+      <!--LIVE CONTENTS (ALWAYS IN DOM)-->
       <template v-if="!deferContent">
         <div ref="contents" v-show="!isCollapsed" class="vuestro-panel-contents" @scroll="updateScroll">
           <slot></slot>
         </div>
       </template>
+      <!--DEFERRED CONTENTS, USES v-if TO INSERT/REMOVE FROM DOM ON COLLAPSE TOGGLE-->
       <template v-else>
         <div ref="contents" v-if="!isCollapsed" class="vuestro-panel-contents" @scroll="updateScroll">
           <slot></slot>
         </div>
       </template>
+      <!--SCROLL ARROW-->
       <div v-if="canScroll" class="vuestro-panel-scroll-arrow">
         <vuestro-icon name="arrow-down"></vuestro-icon>
       </div>
@@ -64,22 +75,25 @@ export default {
   name: 'VuestroPanel',
   props: {
     gutter: { type: String, default: 'md' },         // gutter size override, usually inherited
-    spinner: { type: Boolean, default: false },      // true if spinner should be shown next to title
-    collapsible: { type: Boolean, default: false },  // true if collapsible
+    spinner: { type: Boolean, default: false },      // true if spinner should be shown next to title to show loading status
+    collapsible: { type: Boolean, default: false },  // true if collapsible, automatically adds caret
     collapsed: { type: Boolean, default: false },    // true if set collapsed mode
-    deferContent: { type: Boolean, default: false }, // defer loading/rendering of content until expanded
+    deferContent: { type: Boolean, default: false }, // defer loading/rendering of content until expanded (v-show/v-if)
     contentPadding: { type: String, default: '' },   // content padding size, default is no padding, options are sm,md,lg
     scroll: { type: Boolean, default: false },       // true for scrolling content
-    frame: { type: Boolean, default: false },        // true for absolutely positioned content ("frame-mode")
+    frame: { type: Boolean, default: false },        // true for absolutely positioned content div ("frame-mode")
     noBorder: { type: Boolean, default: false },     // true for no border
     noStretch: { type: Boolean, default: false },     // true for disable flexbox-stretch
     overflowHidden: { type: Boolean, default: false }, // true for overflow hidden on content
     draggable: { type: Boolean, default: false },    // true for .drag class and move cursor on title
-    row: { type: Boolean, default: false },          // true for flexbox row mode instead of column
+    row: { type: Boolean, default: false },          // true for flexbox row mode instead of column in content
   },
   computed: {
     hasTitlebar() {
       return this.$scopedSlots.title || this.$scopedSlots.toolbar || this.collapsible;
+    },
+    hasContent() {
+      return this.$slots.default;
     },
   },
   data() {
@@ -122,9 +136,6 @@ export default {
 .vuestro-app {
   --vuestro-panel-bg: #fff;
   --vuestro-panel-fg: inherit;
-  --vuestro-panel-toolbar-bg: inherit;
-  --vuestro-panel-toolbar-fg: inherit;
-  --vuestro-panel-toolbar-border: none;
   --vuestro-panel-border: none;
   --vuestro-panel-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.15);
   --vuestro-panel-border-radius: var(--vuestro-control-border-radius);
@@ -160,10 +171,10 @@ export default {
   transition: background-color 0.4s;
   border-radius: var(--vuestro-panel-border-radius);
   box-shadow: var(--vuestro-panel-box-shadow);
+  border: var(--vuestro-panel-border);
   display: flex;
   flex-direction: column;
   position: relative;
-  border: var(--vuestro-panel-border);
   min-width: 0;
   flex-grow: 1;
 }
@@ -178,6 +189,7 @@ export default {
   border: none;
 }
 
+/*TOOLBAR*/
 .vuestro-panel-title-toolbar {
   min-height: var(--vuestro-panel-titlebar-min-height);
   display: flex;
@@ -188,7 +200,8 @@ export default {
   border-top-right-radius: calc(var(--vuestro-panel-border-radius) - 1px);
   padding: var(--vuestro-panel-titlebar-padding, 0 0.2em);
 }
-.vuestro-panel.isCollapsed .vuestro-panel-title-toolbar {
+.vuestro-panel.isCollapsed .vuestro-panel-title-toolbar,
+.vuestro-panel:not(.hasContent) .vuestro-panel-title-toolbar {
   border-bottom-left-radius: calc(var(--vuestro-panel-border-radius) - 1px);
   border-bottom-right-radius: calc(var(--vuestro-panel-border-radius) - 1px);
 }
@@ -205,6 +218,7 @@ export default {
   color: var(--vuestro-panel-toolbar-fg);
 }
 
+/*CONTENTS*/
 .vuestro-panel-contents-wrapper {
   flex-grow: 1;
   position: relative;

@@ -1,11 +1,16 @@
 // Modal component
+// can be opened two ways:
+//  1. parent binds the active prop
+//  2. parent calls onOpen() using a ref
+//
+// 
 //
 // CSS Vars:
-// --vuestro-modal-content-bg - the background shade (outside modal)
-// --vuestro-modal-margin-top - space above modal
-// --vuestro-modal-title-font-size
-// --vuestro-modal-titlebar-padding
-// --vuestro-modal-buttons-padding
+//  --vuestro-modal-content-bg - the background shade (outside modal)
+//  --vuestro-modal-margin-top - space above modal
+//  --vuestro-modal-title-font-size
+//  --vuestro-modal-titlebar-padding
+//  --vuestro-modal-buttons-padding
 //
 <template>
   <transition name="vuestro-modal" mode="out-in"
