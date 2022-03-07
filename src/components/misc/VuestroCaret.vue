@@ -1,5 +1,5 @@
 <template>
-  <div class="vuestro-caret" :class="[size, { collapsed, left }]" @click="onClick">
+  <div class="vuestro-caret" :class="[size, { collapsed, left, hide }]" @click="onClick">
     <vuestro-icon name="angle-down"></vuestro-icon>
   </div>
 </template>
@@ -12,6 +12,7 @@ export default {
     collapsed: { type: Boolean, required: true },
     size: { type: String, default: 'md' },
     left: { type: Boolean, default: false },
+    hide: { type: Boolean, default: false },
   },
   methods: {
     onClick(e) {
@@ -36,6 +37,7 @@ export default {
   --size: 12px;
 }
 
+
 .vuestro-caret {
   width: var(--size);
   height: var(--size);
@@ -43,6 +45,9 @@ export default {
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+.vuestro-caret.hide {
+  opacity: 0;
 }
 .vuestro-caret.collapsed >>> svg {
   transform: rotate(-90deg);

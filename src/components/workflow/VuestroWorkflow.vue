@@ -16,12 +16,12 @@
         <vuestro-container gutter="none" justify="space-between">
           <vuestro-pill v-if="mode === 'idle'"
                         color="var(--vuestro-workflow-idle-color)"
-                        variant="capsule">
+                        variant="capsule badge">
             <template #title>{{ idleTitle }}</template>
           </vuestro-pill>
           <vuestro-pill v-else-if="mode === 'running'"
                         color="var(--vuestro-workflow-running-color)"
-                        variant="capsule">
+                        variant="capsule badge">
             <template #title>{{ runningTitle }}</template>
             <template #value>
               <vuestro-container gutter="none" grow="1" align="center">

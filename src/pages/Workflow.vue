@@ -7,7 +7,7 @@
 
     <vuestro-card>
       <vuestro-button @click="$refs.theWorkflow.start()">Start Workflow</vuestro-button>
-      <vuestro-workflow ref="theWorkflow" 
+      <vuestro-workflow ref="theWorkflow"
                         title="My First Workflow"
                         :steps="workflowSteps">
       </vuestro-workflow>
@@ -31,7 +31,7 @@ export default {
           handler: this.getNewUserId,
         },
         {
-          id: 'step1',
+          id: 'step2',
           preTitle: 'Create user in db',
           postTitle: 'User created',
           handler: this.createUser,
@@ -43,12 +43,12 @@ export default {
   methods: {
     getNewUserId() {
       return new Promise((resolve, reject) => {
-        setTimeout(resolve, 2000);
+        setTimeout(resolve('new user id: 32fd3e9a90'), 2000);
       });
     },
     createUser() {
       return new Promise((resolve, reject) => {
-        setTimeout(resolve, 3000);
+        setTimeout(resolve('new user created'), 3000);
       });
     },
   },

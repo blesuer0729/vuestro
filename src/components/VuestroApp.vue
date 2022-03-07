@@ -55,7 +55,7 @@
             <slot name="pre-content"></slot>
             <transition name="vuestro-app-pages" mode="out-in" @after-leave="onRouterTransitionDone">
               <keep-alive> <!-- vue router option for persistent state -->
-                <router-view/>
+                <router-view :key="$route.path"/> <!-- key off of path for uniqueness -->
               </keep-alive>
             </transition>
             <slot name="footer"></slot>

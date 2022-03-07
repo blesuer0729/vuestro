@@ -1,7 +1,6 @@
 <template>
   <div class="vuestro-sidebar-menu" @click.self="$emit('click')">
-    <vuestro-sidebar-item v-for="(route, ridx) in routes"
-                          :key="route.path"
+    <vuestro-sidebar-item v-for="(route, ridx) in routes" :key="route.name"
                           v-if="isShown(role, route)"
                           :role="role"
                           :route="route">
