@@ -66,6 +66,7 @@ export default {
   data() {
     return {
       open: false,
+      rootEl: null,
     };
   },
   computed: {
@@ -73,11 +74,19 @@ export default {
       if (this.palette) {
         return this.palette;
       }
-      let style = getComputedStyle(this.$root.$el);
-      return this.vuestroColorPalette().map(function(c) {
-        return style.getPropertyValue(c);
-      });
+      let ret = [];
+      if (this.rootEl) {
+        let style = getComputedStyle(this.$root.$el);
+        let palette = this.vuestroColorPalette();
+        for (let p of palette) {
+          ret.push(style.getPropertyValue(p));
+        }
+      }
+      return ret;
     },
+  },
+  mounted() {
+    this.rootEl = this.$root.$el;
   },
   methods: {
     onSelectColor(c) {
