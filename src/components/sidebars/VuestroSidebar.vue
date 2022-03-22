@@ -1,19 +1,10 @@
+// the parent sidebar component
+//
+//
 <template>
   <div class="vuestro-sidebar">
 
-    <!--HEADER BLOCK-->
-    <div class="vuestro-sidebar-header">
-      <div v-if="$scopedSlots.toolbar" class="vuestro-sidebar-toolbar">
-        <slot name="toolbar">
-        </slot>
-      </div>
-
-      <!--LOGO-->
-      <div v-if="$scopedSlots.logo" class="vuestro-sidebar-logo">
-        <slot name="logo"></slot>
-      </div>
-
-    </div>
+    
 
     <!--TITLE BLOCK-->
     <transition v-if="title" name="vuestro-title-text" mode="out-in">
@@ -132,12 +123,10 @@ export default {
 .vuestro-app {
   --vuestro-sidebar-normal-width: 180px;
   --vuestro-sidebar-mini-width: 70px;
-  --vuestro-sidebar-header-bg: var(--vuestro-content-bg);
-  --vuestro-sidebar-header-fg: var(--vuestro-black);
   --vuestro-sidebar-bg: var(--vuestro-content-bg);
   --vuestro-sidebar-fg: var(--vuestro-text-color);
   --vuestro-sidebar-border: none;
-  --vuestro-sidebar-item-height: 50px;
+  --vuestro-sidebar-item-height: 2.75em;
   --vuestro-sidebar-item-padding-right: 15px;
   --vuestro-sidebar-item-hover: var(--vuestro-hover);
   --vuestro-sidebar-item-active-bg: var(--vuestro-active);
@@ -188,10 +177,6 @@ export default {
   width: var(--vuestro-sidebar-mini-width);
 }
 
-.vuestro-sidebar-header {
-  background-color: var(--vuestro-sidebar-header-bg);
-  color: var(--vuestro-sidebar-header-fg);
-}
 
 .vuestro-sidebar-logo {
   padding-top: 0.5em;

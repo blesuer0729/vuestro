@@ -1,7 +1,7 @@
 <template>
   <vuestro-panel stretch class="vuestro-table-panel">
     <template #title><span class="drag">{{ options.title }}</span></template>
-    <vuestro-table :data="data" :columns=""></vuestro-table>
+    <vuestro-table :data="data"></vuestro-table>
   </vuestro-panel>
 </template>
 

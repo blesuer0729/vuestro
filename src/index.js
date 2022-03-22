@@ -8,7 +8,7 @@
 import Vuestro from './plugin';
 Vue.use(Vuestro);
 
-import App from './App.vue';
+import App from './DemoApp.vue';
 import router from './router';
 import axios from 'axios';
 import store from './store';

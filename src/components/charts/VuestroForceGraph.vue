@@ -51,7 +51,6 @@
 
 /* global _ */
 import * as d3 from 'd3';
-import './VuestroChartStyle';
 
 export default {
   name: 'VuestroForceGraph',
@@ -198,6 +197,14 @@ export default {
 .vuestro-force-graph-labels {
   pointer-events: none;
   fill: var(--vuestro-text-color);
+}
+
+.vuestro-chart-toolbar {
+  width: 100%;
+  padding: 2px;
+  position: absolute;
+  bottom: 0;
+  display: flex;
 }
 
 </style>

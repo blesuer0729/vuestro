@@ -1,138 +1,20 @@
 /* global _ */
-import VuestroApp from '../components/VuestroApp';
-import VuestroAreaChart from '../components/charts/VuestroAreaChart';
-import VuestroAsyncText from '../components/text/VuestroAsyncText';
-import VuestroBarChart from '../components/charts/VuestroBarChart';
-import VuestroBreadcrumb from '../components/containers/VuestroBreadcrumb';
-import VuestroButton from '../components/VuestroButton';
-import VuestroCalendar from '../components/containers/calendar/VuestroCalendar';
-import VuestroCaret from '../components/misc/VuestroCaret';
-import VuestroCard from '../components/containers/VuestroCard';
-import VuestroChartPanel from '../components/charts/VuestroChartPanel';
-import VuestroCheckOrX from '../components/misc/VuestroCheckOrX';
-import VuestroCode from '../components/text/VuestroCode';
-import VuestroContainer from '../components/containers/VuestroContainer';
-import VuestroCleanKvp from '../components/text/VuestroCleanKvp';
-import VuestroColorPicker from '../components/pickers/VuestroColorPicker';
-import VuestroConfirm from '../components/VuestroConfirm';
-import VuestroDatePicker from '../components/pickers/VuestroDatePicker';
-import VuestroDropdown from '../components/VuestroDropdown';
-import VuestroDonutChart from '../components/charts/VuestroDonutChart';
-import VuestroDynamicTable from '../components/VuestroDynamicTable';
-import VuestroEditableText from '../components/text/VuestroEditableText';
-import VuestroEditor from '../components/input/VuestroEditor';
-import VuestroEllipsisText from '../components/text/VuestroEllipsisText';
-import VuestroForceGraph from '../components/charts/VuestroForceGraph';
-import VuestroGeoPattern from '../components/misc/VuestroGeoPattern';
-import VuestroGrid from '../components/grid/VuestroGrid';
-import VuestroGridBox from '../components/grid/VuestroGridBox';
-import VuestroHr from '../components/misc/VuestroHr';
-import VuestroIcon from '../components/misc/VuestroIcon';
-import VuestroLabel from '../components/text/VuestroLabel';
-import VuestroListButton from '../components/list/VuestroListButton';
-import VuestroListGroup from '../components/list/VuestroListGroup';
-import VuestroListGroupToggle from '../components/list/VuestroListGroupToggle';
-import VuestroListItem from '../components/list/VuestroListItem';
-import VuestroMap from '../components/charts/VuestroMap';
-import VuestroModal from '../components/modal/VuestroModal';
-import VuestroMultiSelect from '../components/input/VuestroMultiSelect';
-import VuestroNoData from '../components/misc/VuestroNoData';
-import VuestroNotifications from '../components/VuestroNotifications';
-import VuestroObjectBrowser from '../components/VuestroObjectBrowser';
-import VuestroObjectBrowserModal from '../components/modal/VuestroObjectBrowserModal';
-import VuestroOmbre from '../components/containers/VuestroOmbre';
-import VuestroPanel from '../components/containers/VuestroPanel';
-import VuestroParameterList from '../components/input/VuestroParameterList';
-import VuestroPill from '../components/VuestroPill';
-import VuestroSankeyChart from '../components/charts/VuestroSankeyChart';
-import VuestroSearchHighlight from '../components/text/VuestroSearchHighlight';
-import VuestroShimmer from '../components/misc/VuestroShimmer';
-import VuestroSidebar from '../components/sidebar/VuestroSidebar';
-import VuestroSpinner from '../components/input/VuestroSpinner';
-import VuestroStatPanel from '../components/charts/VuestroStatPanel';
-import VuestroSvgTooltip from '../components/charts/VuestroSvgTooltip';
-import VuestroBarSvgTooltip from '../components/charts/VuestroBarSvgTooltip';
-import VuestroSvgButton from '../components/charts/VuestroSvgButton';
-import VuestroSvgLegend from '../components/charts/VuestroSvgLegend';
-import VuestroTable from '../components/VuestroTable';
-import VuestroTextField from '../components/input/VuestroTextField';
-import VuestroTimePicker from '../components/pickers/VuestroTimePicker';
-import VuestroTitle from '../components/text/VuestroTitle';
-import VuestroTooltip from '../components/VuestroTooltip';
-import VuestroTray from '../components/containers/VuestroTray';
-import VuestroUpload from '../components/input/VuestroUpload';
-import VuestroWorkflow from '../components/workflow/VuestroWorkflow';
 
 import VuestroMixins from './mixins';
 
 export default {
   install(Vue, options) {
     //
-    // COMPONENT REGISTRATION
+    // COMPONENT REGISTRATION, FINDS ALL .vue FILES AND ADDS THEM USING THE
+    // name: FIELD
     //
-    Vue.component(VuestroApp.name, VuestroApp);
-    Vue.component(VuestroAreaChart.name, VuestroAreaChart);
-    Vue.component(VuestroAsyncText.name, VuestroAsyncText);
-    Vue.component(VuestroBarChart.name, VuestroBarChart);
-    Vue.component(VuestroBreadcrumb.name, VuestroBreadcrumb);
-    Vue.component(VuestroButton.name, VuestroButton);
-    Vue.component(VuestroCalendar.name, VuestroCalendar);
-    Vue.component(VuestroCaret.name, VuestroCaret);
-    Vue.component(VuestroCard.name, VuestroCard);
-    Vue.component(VuestroChartPanel.name, VuestroChartPanel);
-    Vue.component(VuestroCheckOrX.name, VuestroCheckOrX);
-    Vue.component(VuestroConfirm.name, VuestroConfirm);
-    Vue.component(VuestroContainer.name, VuestroContainer);
-    Vue.component(VuestroCleanKvp.name, VuestroCleanKvp);
-    Vue.component(VuestroCode.name, VuestroCode);
-    Vue.component(VuestroColorPicker.name, VuestroColorPicker);
-    Vue.component(VuestroDatePicker.name, VuestroDatePicker);
-    Vue.component(VuestroDropdown.name, VuestroDropdown);
-    Vue.component(VuestroDonutChart.name, VuestroDonutChart);
-    Vue.component(VuestroDynamicTable.name, VuestroDynamicTable);
-    Vue.component(VuestroEditableText.name, VuestroEditableText);
-    Vue.component(VuestroEditor.name, VuestroEditor);
-    Vue.component(VuestroEllipsisText.name, VuestroEllipsisText);
-    Vue.component(VuestroForceGraph.name, VuestroForceGraph);
-    Vue.component(VuestroGeoPattern.name, VuestroGeoPattern);
-    Vue.component(VuestroGrid.name, VuestroGrid);
-    Vue.component(VuestroGridBox.name, VuestroGridBox);
-    Vue.component(VuestroHr.name, VuestroHr);
-    Vue.component(VuestroIcon.name, VuestroIcon);
-    Vue.component(VuestroLabel.name, VuestroLabel);
-    Vue.component(VuestroListButton.name, VuestroListButton);
-    Vue.component(VuestroListGroup.name, VuestroListGroup);
-    Vue.component(VuestroListGroupToggle.name, VuestroListGroupToggle);
-    Vue.component(VuestroListItem.name, VuestroListItem);
-    Vue.component(VuestroMap.name, VuestroMap);
-    Vue.component(VuestroModal.name, VuestroModal);
-    Vue.component(VuestroMultiSelect.name, VuestroMultiSelect);
-    Vue.component(VuestroNoData.name, VuestroNoData);
-    Vue.component(VuestroNotifications.name, VuestroNotifications);
-    Vue.component(VuestroObjectBrowser.name, VuestroObjectBrowser);
-    Vue.component(VuestroObjectBrowserModal.name, VuestroObjectBrowserModal);
-    Vue.component(VuestroOmbre.name, VuestroOmbre);
-    Vue.component(VuestroPanel.name, VuestroPanel);
-    Vue.component(VuestroParameterList.name, VuestroParameterList);
-    Vue.component(VuestroPill.name, VuestroPill);
-    Vue.component(VuestroSankeyChart.name, VuestroSankeyChart);
-    Vue.component(VuestroShimmer.name, VuestroShimmer);
-    Vue.component(VuestroSidebar.name, VuestroSidebar);
-    Vue.component(VuestroSpinner.name, VuestroSpinner);
-    Vue.component(VuestroStatPanel.name, VuestroStatPanel);
-    Vue.component(VuestroSvgTooltip.name, VuestroSvgTooltip);
-    Vue.component(VuestroBarSvgTooltip.name, VuestroBarSvgTooltip);
-    Vue.component(VuestroSearchHighlight.name, VuestroSearchHighlight);
-    Vue.component(VuestroSvgButton.name, VuestroSvgButton);
-    Vue.component(VuestroSvgLegend.name, VuestroSvgLegend);
-    Vue.component(VuestroTable.name, VuestroTable);
-    Vue.component(VuestroTextField.name, VuestroTextField);
-    Vue.component(VuestroTimePicker.name, VuestroTimePicker);
-    Vue.component(VuestroTitle.name, VuestroTitle);
-    Vue.component(VuestroTooltip.name, VuestroTooltip);
-    Vue.component(VuestroTray.name, VuestroTray);
-    Vue.component(VuestroUpload.name, VuestroUpload);
-    Vue.component(VuestroWorkflow.name, VuestroWorkflow);
+    let modules = require.context('@/components', true, /\.vue$/, 'sync');
+    for (let m of modules.keys()) {
+      // console.info(`importing ${m}`);
+      let module = modules(m).default;
+      Vue.component(module.name, module);
+    }
+
     //
     // FILTERS
     //

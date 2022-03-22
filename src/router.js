@@ -66,6 +66,7 @@ export default new Router({
         title: 'Dashboard',
         sidebar: true,
         icon: 'tachometer-alt',
+        color: 'var(--vuestro-purple)',
       },
       name: 'dashboard',
       path: '/dashboard',
@@ -76,6 +77,7 @@ export default new Router({
         title: 'Containers',
         sidebar: true,
         icon: 'boxes',
+        color: 'var(--vuestro-indigo)',
       },
       name: 'containers',
       path: '/containers',
@@ -85,6 +87,7 @@ export default new Router({
           meta: {
             title: 'Container',
             sidebar: true,
+            icon: 'boxes',
           },
           name: 'container',
           path: 'container',

@@ -17,6 +17,8 @@
 
 <script>
 
+import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.js';
 // differentiate data generated and user drawn markers with two divIcons
 const clusterIconSvg = {
   mapIconUrl: '<svg width="100%" height="100%" viewBox="0 0 289 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g transform="matrix(1,0,0,1,-442.225,-95.7423)"><path d="M586.374,95.742C665.931,95.742 730.522,160.333 730.522,239.891C730.522,361.821 586.374,607.562 586.374,607.562C586.374,607.562 442.225,361.937 442.225,239.891C442.225,160.333 506.816,95.742 586.374,95.742ZM586.374,164.092C628.208,164.092 662.173,198.056 662.173,239.891C662.173,281.726 628.208,315.69 586.374,315.69C544.539,315.69 510.575,281.726 510.575,239.891C510.575,198.056 544.539,164.092 586.374,164.092Z" style="fill:var(--vuestro-primary);"/></g></svg>',
