@@ -7,51 +7,18 @@
       <!--MAIN TEMPLATE-->
       <div v-if="authenticated && !loading" key="main">
 
-        <!--SLOT WITH DEFAULT NAVBAR-->
-        <slot name="navbar">
-          <vuestro-navbar :title="title">
-            <template #mobile-sidebar>
-              <slot name="sidebar">
-                <vuestro-sidebar :user="user"
-                                 :user-img="userImg"
-                                 :role="role">
-                  <template #logo>
-                    <slot name="sidebar-logo"></slot>
-                  </template>
-                  <template #footer>
-                    <slot name="sidebar-footer"></slot>
-                  </template>
-                </vuestro-sidebar>
-              </slot>
-            </template>
-            <template #logo>
-              <slot name="navbar-logo"></slot>
-            </template>
-            <template #default>
-              <slot name="navbar-slot"></slot>
-            </template>
-          </vuestro-navbar>
-        </slot>
+        <!--NAVBAR SLOT-->
+        <slot name="navbar"></slot>
 
         <div class="vuestro-content">
-          <!--SLOT WITH DEFAULT SIDEBAR-->
+          <!--SIDEBAR SLOT-->
           <template v-if="!$root.mobile">
-            <slot name="sidebar">
-              <vuestro-sidebar :user="user"
-                               :user-img="userImg"
-                               :role="role">
-                <template #logo>
-                  <slot name="sidebar-logo"></slot>
-                </template>
-                <template #footer>
-                  <slot name="sidebar-footer"></slot>
-                </template>
-              </vuestro-sidebar>
-            </slot>
+            <slot name="sidebar"></slot>
           </template>
 
           <!--MAIN PAGE VIEW-->
           <div ref="routerView" class="vuestro-router-view" @scroll="onScroll">
+            <!--PRE-CONTENT SLOT (FOR STUFF LIKE A NOTIFICATION BAR)-->
             <slot name="pre-content"></slot>
             <transition name="vuestro-app-pages" mode="out-in" @after-leave="onRouterTransitionDone">
               <keep-alive> <!-- vue router option for persistent state -->
@@ -79,23 +46,13 @@
 <script>
 
 /* global Event, navigator */
-import VuestroNavbar from './VuestroNavbar.vue';
-import VuestroSidebar from './sidebar/VuestroSidebar.vue';
 
 export default {
   name: 'VuestroApp',
-  components: {
-    VuestroNavbar,
-    VuestroSidebar,
-  },
   props: {
     authenticated: { type: Boolean, default: true },
     loading: { type: Boolean, default: false },
-    logo: { type: String, default: null },
     title: { type: String, default: '' },     // app title
-    user: { type: String, default: '' },      // username
-    userImg: { type: String, default: null }, // user image
-    role: { type: String, default: '' },      // user role
     dark: { type: Boolean, default: false },  // dark mode
   },
   computed: {
