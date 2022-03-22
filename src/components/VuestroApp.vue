@@ -187,9 +187,10 @@ export default {
   --vuestro-muted-danger: #981521;
 
   /* colors responsible for change to dark */
-  --vuestro-content-bg: #dfdfdf;
+  --vuestro-content-bg: #ededed;
 
-  --vuestro-widget-light-bg: #e8e9ec;
+  --vuestro-widget-light-bg: #e0e0e0;
+  --vuestro-widget-med-bg: #e0e0e0;
   --vuestro-widget-dark-bg: #2f353f;
 
   --vuestro-field-bg: #d1d1d1;
@@ -211,7 +212,7 @@ export default {
   --vuestro-text-color-muted: #777;
   --vuestro-text-color-inverse: #eee; /* inverse text, changes with theme */
   --vuestro-text-color-dark: #323334; /* meant for always dark text */
-  --vuestro-text-color-light: #ccc; /* meant for always light text */
+  --vuestro-text-color-light: #ddd; /* meant for always light text */
 }
 
 /* DARK UI OVERRIDES */

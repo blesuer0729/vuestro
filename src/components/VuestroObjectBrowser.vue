@@ -91,7 +91,6 @@
 <script>
 
 /* global _ */
-import moment from 'moment';
 
 export default {
   name: 'VuestroObjectBrowser',
@@ -238,9 +237,9 @@ export default {
         if (this.newMemberVal.match(/[0-9\.]+/)) {
           v = parseFloat(this.newMemberVal);
         }
-        let dt = moment(this.newMemberVal, moment.ISO_8601);
-        if (dt.isValid()) {
-          v = dt.toDate();
+        let dt = new Date(this.newMemberVal);
+        if (isNaN(dt.getTime())) {
+          v = dt;
         }
         this.$set(this.data, this.newMemberKey, v);
         this.onChange(this.getFullPath(this.newMemberKey), v);

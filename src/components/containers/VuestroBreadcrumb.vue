@@ -2,11 +2,11 @@
 //
 // CSS Vars:
 // --vuestro-breadcrumb-height
-// --vuestro-breadcrumb-trail-bg - background for breadcrumb bar, defaults to transparent
-// --vuestro-breadcrumb-fallback-color
-// --vuestro-breadcrumb-tab-arrow-width - width of arrow shape used for tab/panel variant
 // --vuestro-breadcrumb-font-size
 // --vuestro-breadcrumb-font-weight
+// --vuestro-breadcrumb-tab-arrow-width - width of arrow shape used for tab/panel variant
+// --vuestro-breadcrumb-fallback-color - default color for items when not specified
+// --vuestro-breadcrumb-trail-bg - background for breadcrumb bar, defaults to transparent
 //
 <template>
   <vuestro-container class="vuestro-breadcrumb" :gutter="gutter">
@@ -50,8 +50,8 @@
 export default {
   name: 'VuestroBreadcrumb',
   props: {
-    pages: { type: Array, default: () => [] },
-    delimiter: { type: String, default: 'angle-right' },
+    pages: { type: Array, default: () => [] },     // the initial stack
+    delimiter: { type: String, default: 'angle-right' }, // icon name to use as delimiter
     gutter: { type: String, default: 'md' },       // proxy vuestro-container option
     variant: { type: String, default: 'regular' }, // regular, tabs, panel
     noUrl: { type: Boolean, default: false },      // suppress updating the url, for when bookmarking is not needed
@@ -81,13 +81,15 @@ export default {
   },
   methods: {
     getItemStyle(item) {
+      let bgColor;
       if (this.variant === 'tabs' || this.variant === 'panel') {
-        return {
-          'background-color': item.color || 'var(--vuestro-breadcrumb-fallback-color)',
-        };
+        bgColor = item.color || 'var(--vuestro-breadcrumb-fallback-color)';
+      } else {
+        bgColor = item.color || 'transparent';
       }
       return {
-        'background-color': item.color || 'transparent',
+        'background-color': bgColor,
+        color: this.vuestroAutoTextColor(bgColor, this.$el),
       };
     },
     getItemArrowStyle(item) {
@@ -152,7 +154,7 @@ export default {
   --vuestro-breadcrumb-font-size: 1.2em;
   --vuestro-breadcrumb-font-weight: 500;
   --vuestro-breadcrumb-tab-arrow-width: 1em;
-  --vuestro-breadcrumb-fallback-color: var(--vuestro-gray-dark);
+  --vuestro-breadcrumb-fallback-color: var(--vuestro-primary);
 }
 
 </style>
@@ -170,10 +172,12 @@ export default {
   overflow: hidden;
   background-color: var(--vuestro-breadcrumb-trail-bg, transparent);
 }
-.vuestro-breadcrumb-trail-panel {
+
+.vuestro-breadcrumb-trail-panel /* for variant=panel */ {
   border-bottom: 1px solid var(--vuestro-outline);
   border-top-left-radius: calc(var(--vuestro-control-border-radius) - 1px);
   border-top-right-radius: calc(var(--vuestro-control-border-radius) - 1px);
+  background-color: var(--vuestro-breadcrumb-trail-bg, var(--vuestro-field-bg));
 }
 .vuestro-breadcrumb-item {
   display: flex;
@@ -183,17 +187,17 @@ export default {
   border-radius: var(--vuestro-control-border-radius);
   position: relative;
 }
-.vuestro-breadcrumb-item-tabs,
-.vuestro-breadcrumb-item-panel {
+.vuestro-breadcrumb-item-tabs, /* for variant=tabs */
+.vuestro-breadcrumb-item-panel /* for variant=panel */ {
   height: 100%;
   padding-right: 0;
   border-radius: 0;
 }
-.vuestro-breadcrumb-item-panel:first-child {
+.vuestro-breadcrumb-item-panel:first-child /* for variant=panel */ {
   border-top-left-radius: calc(var(--vuestro-control-border-radius) - 1px);
 }
-.vuestro-breadcrumb-item-tabs:not(:first-child),
-.vuestro-breadcrumb-item-panel:not(:first-child) {
+.vuestro-breadcrumb-item-tabs:not(:first-child), /* for variant=tabs */
+.vuestro-breadcrumb-item-panel:not(:first-child) /* for variant=panel */{
   padding-left: 1.5em;
 }
 

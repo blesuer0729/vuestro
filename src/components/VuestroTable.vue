@@ -25,12 +25,12 @@
                  :class="[ column.align && `vuestro-table-align-${column.align}` ]">
               <span>{{ column.title }}</span>
               <vuestro-button v-if="column.sortable"
-                    no-border
-                    round
-                    size="sm"
-                    class="vuestro-table-header-sort"
-                    :class="{ active: isSortActive(column), desc: isSortDescending(column) }"
-                    @click="onSort(column)">
+                              no-border
+                              round
+                              size="sm"
+                              class="vuestro-table-header-sort"
+                              :class="{ active: isSortActive(column), desc: isSortDescending(column) }"
+                              @click="onSort(column)">
                 <vuestro-icon name="arrow-up"></vuestro-icon>
               </vuestro-button>
             </div>

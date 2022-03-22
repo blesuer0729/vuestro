@@ -14,8 +14,7 @@
       <template #heading>Fit into VuestroPanel Style</template>
       <template #subheading><vuestro-code>variant="panel"</vuestro-code></template>
       <vuestro-panel>
-        <vuestro-breadcrumb :pages="pages" gutter="none" variant="panel"
-                            style="--vuestro-breadcrumb-trail-bg: var(--vuestro-dark)">
+        <vuestro-breadcrumb :pages="pages" gutter="none" variant="panel">
         </vuestro-breadcrumb>
       </vuestro-panel>
     </vuestro-card>

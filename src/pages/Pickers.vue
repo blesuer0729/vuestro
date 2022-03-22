@@ -147,17 +147,15 @@
 
 <script>
 
-import moment from 'moment';
-
 export default {
   name: 'Pickers',
   data() {
     return {
       color: '#2163C9',
   		exampleTime: new Date().toISOString(),
-  		exampleDate: moment().subtract(1, 'day'),
-  		exampleDateString: moment().subtract(1, 'day').toISOString(),
-  		exampleDateRange: [moment().subtract(7, 'days').toDate(), new Date()],
+  		exampleDate: new Date(new Date().getTime() - 86400000),
+  		exampleDateString: new Date(new Date().getTime() - 86400000).toISOString(),
+  		exampleDateRange: [new Date(new Date().getTime() - 604800000), new Date()],
     };
   },
   methods: {

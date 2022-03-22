@@ -104,5 +104,27 @@ export default {
     vuestroChartColorGenerator(idx) {
       return colors(idx);
     },
+    // attempt to determine whether light or dark text would improve contrast
+    // based on the luminosity of the provided background color
+    // if bgColor is a CSS var string, then also provide el so that the CSS var
+    // can be resolved relative to the provided element
+    vuestroAutoTextColor(bgColor, el) {
+      if (bgColor === 'transparent') {
+        return 'var(--vuestro-text-color)';
+      } else if (bgColor.startsWith('var(') && el) {
+        // get var name by itself since most of the time
+        // it will be wrapped in var(..)
+        bgColor = bgColor.split(/[\(\)]/)[1];
+        // resolve the var based on el
+        bgColor = getComputedStyle(el).getPropertyValue(bgColor);
+      }
+      // use d3 to get luminosity
+      let l = d3.hsl(d3.color(bgColor)).l;
+      if (l > 0.55) {
+        return 'var(--vuestro-text-color-dark)';
+      } else {
+        return 'var(--vuestro-text-color-light)';
+      }
+    },
   }
 };
