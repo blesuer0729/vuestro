@@ -23,7 +23,7 @@
                 :class="{ focused: n.name === focusedNode.name }"
                 :x="n.x0"
                 :y="n.y0"
-                :key="n.name"
+                :key="`${idx}_${n.name}`"
                 :height="n.y1 - n.y0"
                 :width="n.x1 - n.x0"
                 :fill="color(n.name)"
@@ -75,7 +75,7 @@
         <template v-if="nodeAlign === nodeAlignOptions.left"><vuestro-icon name="align-left"></vuestro-icon></template>
         <template v-if="nodeAlign === nodeAlignOptions.right"><vuestro-icon name="align-right"></vuestro-icon></template>
       </vuestro-button>
-      <vuestro-pill color="var(--vuestro-gold)">
+      <vuestro-pill v-if="focusedNode" color="var(--vuestro-gold)">
         <template #title>
           <span class="sankey-toolbar-selected-node-title">{{ selectedNodeLabel }}</span>
         </template>
