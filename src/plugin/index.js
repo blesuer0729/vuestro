@@ -5,10 +5,10 @@ import VuestroMixins from './mixins';
 export default {
   install(Vue, options) {
     //
-    // COMPONENT REGISTRATION, FINDS ALL .vue FILES AND ADDS THEM USING THE
-    // name: FIELD
+    // COMPONENT REGISTRATION, FINDS ALL .vue FILES in the /components directory
+    // AND ADDS THEM USING THE name: FIELD
     //
-    let modules = require.context('@/components', true, /\.vue$/, 'sync');
+    let modules = require.context('../components', true, /\.vue$/, 'sync');
     for (let m of modules.keys()) {
       // console.info(`importing ${m}`);
       let module = modules(m).default;
