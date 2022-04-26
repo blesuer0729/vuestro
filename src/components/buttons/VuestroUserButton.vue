@@ -20,8 +20,7 @@
                @click="onAvatarClick"/>
         </div>
         <transition name="vuestro-user-button" mode="out-in">
-          {{ isMiniSidebar }}
-          <div v-if="!isMiniSidebar" class="vuestro-user-button-text">
+          <div v-if="!hideText" class="vuestro-user-button-text">
             <span class="vuestro-user-button-user">{{ user }}</span>
             <span>{{ role }}</span>
           </div>
@@ -41,14 +40,10 @@ export default {
   props: {
     user: { type: String, default: '' },          // username
     avatar: { type: String, default: require('@/assets/default-user.jpg') }, // user avatar
-    role: { type: [String, Array], default: '' }, // user role
+    role: { type: [String, Array], default: '' }, // user role, either string or array of strings
     link: { type: String, default: '' },          // user link
     variant: { type: String, default: 'button' }, // { button, sidebar }
-  },
-  computed: {
-    isMiniSidebar() {
-      return document.body.classList.contains('vuestro-mini-sidebar');
-    },
+    hideText: { type: Boolean, default: false },  // force hides the text
   },
   methods: {
     onAvatarClick() {

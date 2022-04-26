@@ -1,4 +1,4 @@
-// the parent sidebar component
+// the parent sidebar component, holds both the normal and mini-sidebar variants
 //
 //
 // CSS Vars:
@@ -32,8 +32,8 @@
     </div>
 
     <!--HEADER SLOT-->
-    <div v-if="$slots.header" class="vuestro-sidebar-header-slot">
-      <slot name="header"></slot>
+    <div v-if="$scopedSlots.header" class="vuestro-sidebar-header-slot">
+      <slot name="header" :mini="mini"></slot>
     </div>
 
     <!--MENU-->

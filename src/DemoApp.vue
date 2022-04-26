@@ -39,11 +39,12 @@
     <template #sidebar>
       <vuestro-sidebar :mini="isSidebarMini"
                        @update:mini="onSetSidebar">
-        <template #header>
+        <template #header="{ mini }">
           <vuestro-user-button variant="sidebar"
                                :user="user"
                                :avatar="userImg"
                                :role="role"
+                               :hideText="mini"
                                @click="onUserImgClick">
           </vuestro-user-button>
         </template>
@@ -59,7 +60,7 @@
 
 <script>
 
-/* global VERSION, Vuex*/
+/* global VERSION, Vuex */
 
 export default {
   name: 'app',
