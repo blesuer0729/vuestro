@@ -40,10 +40,12 @@
     <transition name="vuestro-sidebar" mode="out-in" @after-leave="afterLeave">
       <vuestro-sidebar-menu v-if="!mini"
                             :routes="routes"
+                            :role="role"
                             @click="toggleSidebar">
       </vuestro-sidebar-menu>
       <vuestro-mini-sidebar-menu v-else
                                  :routes="routes"
+                                 :role="role"
                                  @click="toggleSidebar">
       </vuestro-mini-sidebar-menu>
     </transition>
@@ -63,6 +65,7 @@ export default {
   name: 'VuestroSidebar',
   props: {
     mini: { type: Boolean, default: false }, // mini sidebar
+    role: { type: [String, Array], default: () => [] }, // user role
     routes: {
       type: Array,
       default: function() {
