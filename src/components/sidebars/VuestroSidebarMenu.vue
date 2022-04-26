@@ -10,14 +10,10 @@
 
 <script>
 
-import VuestroSidebarItem from './VuestroSidebarItem';
 import VuestroSidebarMixins from './VuestroSidebarMixins';
 
 export default {
-  name: 'VuestroSideBarMenu',
-  components: {
-    VuestroSidebarItem,
-  },
+  name: 'VuestroSidebarMenu',
   mixins: [
     VuestroSidebarMixins,
   ],

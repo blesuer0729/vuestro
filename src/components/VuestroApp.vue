@@ -383,6 +383,7 @@ export default {
   display: flex;
   overflow: hidden; /* lets .vuestro-router-view do the scrolling */
   transition: all var(--vuestro-primary-transition-time);
+  z-index: 1;
 }
 
 .vuestro-router-view {

@@ -30,8 +30,8 @@
           </transition>
         </vuestro-dropdown>
       </template>
-      <!--LOGO SLOT-->
       <div class="vuestro-navbar-gutter"></div>
+      <!--LOGO SLOT-->
       <div v-if="$slots.logo" class="vuestro-navbar-logo">
         <slot name="logo" ></slot>
       </div>
@@ -161,6 +161,7 @@ export default {
 }
 
 .vuestro-navbar-logo {
+  font-size: 2em;
   white-space: nowrap;
 }
 

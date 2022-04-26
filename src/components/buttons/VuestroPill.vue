@@ -86,6 +86,7 @@ export default {
   data() {
     return {
       autoCapital: false,
+      theEl: null, // alias for $el once mounted
     };
   },
   computed: {
@@ -100,9 +101,11 @@ export default {
           text = this.$slots.title[0].text || '';
         }
         ret['--vuestro-pill-geopattern'] = GeoPattern.generate(text.trim()).toDataUrl();
+        ret['--vuestro-pill-title-fg'] = 'var(--vuestro-text-color-light)';
       }
       if (this.color) {
         ret['--vuestro-pill-title-bg'] = this.color;
+        ret['--vuestro-pill-title-fg'] = this.vuestroAutoTextColor(this.color, this.theEl);
       }
       return ret;
     },
@@ -119,6 +122,9 @@ export default {
     isValueButtons() {
       return this.$scopedSlots['value-buttons'] || this.$listeners.close;
     },
+  },
+  mounted() {
+    this.theEl = this.$el;
   },
   methods: {
     onClose(e) {
@@ -139,12 +145,10 @@ export default {
 .vuestro-app {
   --vuestro-pill-radius: 999px;
   /*--vuestro-pill-title-bg: var(--vuestro-secondary);*/
-  --vuestro-pill-title-fg: var(--vuestro-text-color-inverse);
   --vuestro-pill-value-fg: var(--vuestro-text-color);
   --vuestro-pill-value-bg: var(--vuestro-widget-light-bg);
 }
 .vuestro-dark {
-  --vuestro-pill-title-fg: var(--vuestro-text-color);
   --vuestro-pill-value-fg: var(--vuestro-text-color);
   --vuestro-pill-value-bg: var(--vuestro-gray-med);
 }

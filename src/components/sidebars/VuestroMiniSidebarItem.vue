@@ -1,8 +1,8 @@
 <template>
   <div class="vuestro-mini-sidebar-item"
-       :class="{ bottom: route.meta.sidebarBottom }"
+       :class="{ bottom: route.meta && route.meta.sidebarBottom }"
        @mouseleave="onLeave">
-
+    <!--ICON-->
     <div class="vuestro-mini-sidebar-icon"
          :class="{ 'vuestro-router-link-active': isParentRoute }"
          :style="{ 'background-color': route.meta.bgColor, color: route.meta.fgColor }"
@@ -11,48 +11,44 @@
       <vuestro-icon v-if="route.meta.icon" :name="route.meta.icon"></vuestro-icon>
       <span v-if="route.meta.svg" v-html="route.meta.svg"></span>
     </div>
-
-    <div ref="popup"
-         class="vuestro-mini-sidebar-popup"
-         :class="{ top }"
-         :style="{ visibility: active ? 'visible':'hidden',
-                   opacity: active ? '1':'0' }">
-      <div class="vuestro-mini-sidebar-popup-title">
-        <span class="no-select">{{ route.meta.title }}</span>
-        <template v-if="route.meta.badgeComponent">
-          <component :is="route.meta.badgeComponent"></component>
+    <!--POPUP-->
+    <div class="popup-wrapper" style="position: fixed;">
+      <div ref="popup"
+           class="vuestro-mini-sidebar-popup"
+           :style="popupStyle">
+        <div class="vuestro-mini-sidebar-popup-title">
+          <span class="no-select">{{ route.meta.title }}</span>
+          <template v-if="route.meta.badgeComponent">
+            <component :is="route.meta.badgeComponent"></component>
+          </template>
+        </div>
+        <vuestro-sub-routes v-if="route.children" :role="role" :route="route"></vuestro-sub-routes>
+        <!--VUEX CHILDREN-->
+        <template v-if="route.meta.vuex">
+          <vuestro-sub-routes :route="vuexRoute" to-path></vuestro-sub-routes>
+          <div v-if="route.meta.vuexMessage && vuexSubRoutes"
+               class="vuestro-mini-sidebar-vuex-message">
+            {{ route.meta.vuexMessage }}
+          </div>
         </template>
       </div>
-      <vuestro-sub-routes v-if="route.children" :role="role" :route="route"></vuestro-sub-routes>
-      <!--VUEX CHILDREN-->
-      <template v-if="route.meta.vuex">
-        <vuestro-sub-routes :route="vuexRoute" to-path></vuestro-sub-routes>
-        <div v-if="route.meta.vuexMessage && vuexSubRoutes"
-             class="vuestro-mini-sidebar-vuex-message">
-          {{ route.meta.vuexMessage }}
-        </div>
-      </template>
     </div>
   </div>
 </template>
 
 <script>
 
-import VuestroSubRoutes from './VuestroSubRoutes.vue';
+/* global _ */
 
 export default {
   name: 'VuestroMiniSidebarItem',
-  components: {
-    VuestroSubRoutes,
-  },
   props: {
     role: { type: [String, Array], default: () => [] }, // user role
     route: { type: Object, required: true },
   },
   data() {
     return {
-      active: this.isParentRoute,
-      top: false,
+      active: false,
     };
   },
   computed: {
@@ -72,15 +68,21 @@ export default {
       if (this.vuexRoute)
       return _.filter(this.vuexRoute.children, function(o) { return o.meta.sidebar; }).length === 0;
     },
-  },
-  mounted() {
-    if (this.$refs.popup.getBoundingClientRect().bottom > window.innerHeight) {
-      this.top = true;
-    }
+    popupStyle() {
+      let bcr = this.$el && this.$el.getBoundingClientRect() || { top: 0, width: 0 };
+      return {
+        top: `${bcr.top}px`,
+        left: `${bcr.width}px`,
+        visibility: this.active ? 'visible':'hidden',
+        opacity: this.active ? '1':'0',
+      };
+    },
   },
   methods: {
     onHover() {
       this.active = true;
+      // set position for popup
+
     },
     onLeave() {
       this.active = false;
@@ -102,9 +104,8 @@ export default {
 <style scoped>
 
 .vuestro-mini-sidebar-item {
-  position: relative;
   height: var(--vuestro-sidebar-item-height);
-  transition: none !important;
+  flex: none; /* don't let flex squash us */
 }
 
 .vuestro-mini-sidebar-item.bottom {
@@ -141,18 +142,12 @@ export default {
   width: var(--vuestro-sidebar-normal-width);
   background-color: var(--vuestro-sidebar-item-hover);
   color: var(--vuestro-sidebar-fg);
-  position: absolute;
-  top: 0;
-  left: 100%;
+  position: fixed;
+  left: 0;
   border-top-right-radius: var(--vuestro-sidebar-radius);
   border-bottom-right-radius: var(--vuestro-sidebar-radius);
-  z-index: 2000;
+  z-index: 3000;
   padding-right: var(--vuestro-sidebar-radius);
-}
-
-.vuestro-mini-sidebar-popup.top {
-  top: initial;
-  bottom: 0;
 }
 
 .vuestro-mini-sidebar-popup > .vuestro-mini-sidebar-popup-title {

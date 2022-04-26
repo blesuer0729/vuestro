@@ -391,6 +391,16 @@
       </vuestro-container>
     </vuestro-card>
 
+    <vuestro-card>
+      <template #subheading>VuestroUserButton</template>
+      <template #description>A user tile</template>
+      <vuestro-container>
+        <vuestro-user-button user="Test User" role="User Role">
+          Provides a slot for user info
+        </vuestro-user-button>
+      </vuestro-container>
+    </vuestro-card>
+
   </vuestro-container>
 </template>
 

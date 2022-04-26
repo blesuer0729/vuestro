@@ -41,13 +41,8 @@
 
 <script>
 
-import VuestroSubRoutes from './VuestroSubRoutes.vue';
-
 export default {
   name: 'VuestroSidebarItem',
-  components: {
-    VuestroSubRoutes,
-  },
   props: {
     role: { type: [String, Array], default: () => [] }, // user role
     route: { type: Object, required: true },
@@ -120,8 +115,9 @@ export default {
 }
 
 .vuestro-sidebar-item a > .vuestro-icon {
-  padding-left: 0.7em;
+  padding-left: 0.4em;
   padding-right: 0.7em;
+  width: 2.5em;
 }
 
 .vuestro-sidebar-item-title {

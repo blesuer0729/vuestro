@@ -9,7 +9,6 @@
           <vuestro-vr></vuestro-vr>
         </template>
         <template #default>
-
           <!--DEMO WIDGET-->
           <vuestro-text-field variant="search"
                               stretch
@@ -38,15 +37,18 @@
       </vuestro-navbar>
     </template>
     <template #sidebar>
-      <vuestro-sidebar :user="user"
-                       :user-img="userImg"
-                       :role="role"
-                       :mini="isSidebarMini"
-                       @update:mini="onSetSidebar"
-                       @profile="onUserImgClick">
+      <vuestro-sidebar :mini="isSidebarMini"
+                       @update:mini="onSetSidebar">
+        <template #header>
+          <vuestro-user-button variant="sidebar"
+                               :user="user"
+                               :avatar="userImg"
+                               :role="role"
+                               @click="onUserImgClick">
+          </vuestro-user-button>
+        </template>
       </vuestro-sidebar>
     </template>
-    <template #sidebar-footer></template>
 
     <template #footer>
       <p class="default-footer">Vuestro ❤ Vue</p>
@@ -64,6 +66,7 @@ export default {
   data() {
     return {
       version: VERSION,
+      logo: require('@/assets/logo.png'),
       user: 'A Vue User',
       userImg: require('@/assets/default-user.jpg'),
       role: 'Admin',
@@ -108,7 +111,6 @@ body {
 }
 
 .logo {
-  font-size: 2em;
   font-weight: 300;
   padding-left: 0.4em;
   padding-right: 0.4em;

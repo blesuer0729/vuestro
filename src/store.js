@@ -9,7 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isDarkUI: true,
-    isSidebarMini: false,
+    isSidebarMini: true,
     notifications: [
       {
         _id: 'testid1',
