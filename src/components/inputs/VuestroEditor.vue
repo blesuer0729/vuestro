@@ -149,6 +149,9 @@ export default {
     resize() {
       this.editor.resize();
     },
+    focus() {
+      this.editor.focus();
+    },
   },
 };
 
